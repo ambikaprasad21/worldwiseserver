@@ -3,7 +3,7 @@ const fs = require("fs");
 
 const app = express();
 
-app.get("/", (req, res) => {
+app.get("/cities", (req, res) => {
   fs.readFile("./data/cities.json", "utf8", (err, data) => {
     if (err) {
       console.error(err);
