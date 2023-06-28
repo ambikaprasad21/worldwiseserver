@@ -1,22 +1,10 @@
-const express = require("express");
-const fs = require("fs");
+const jsonServer = require("json-server");
+const server = jsonServer.create();
+const router = jsonServer.router("cities.json");
+const middleware = jsonServer.defaults();
+const port = process.env.PORT || 3000;
 
-const app = express();
+server.use(middleware);
+server.use(router);
 
-app.get("/cities", (req, res) => {
-  fs.readFile("./data/cities.json", "utf8", (err, data) => {
-    if (err) {
-      console.error(err);
-      res.status(500).send("Error retrieving data");
-    } else {
-      res.json(JSON.parse(data).cities);
-      //   console.log(JSON.parse(data).cities);
-    }
-  });
-});
-
-const port = 9000;
-
-app.listen(port, () => {
-  console.log(`Server listening on port ${port}`);
-});
+server.listen(port);
