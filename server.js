@@ -9,7 +9,7 @@ app.get("/cities", (req, res) => {
       console.error(err);
       res.status(500).send("Error retrieving data");
     } else {
-      res.json(JSON.parse(data));
+      res.json(data);
     }
   });
 });
